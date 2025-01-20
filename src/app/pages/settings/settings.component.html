@@ -1,0 +1,70 @@
+<div class="min-h-screen flex flex-col justify-center items-center bg-base-200 p-4">
+  <div class="card bg-base-100 shadow-lg p-6 w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center mb-6">Settings</h1>
+
+    <!-- Forced Input Toggle -->
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">Enable Forced Input</span>
+        <input
+          type="checkbox"
+          class="toggle toggle-primary"
+          [checked]="getSettings.isForcedInputEnabled()"
+          (change)="setForcedInput($any($event.target).checked)"
+        />
+      </label>
+    </div>
+
+    <!-- Camera Disabled Toggle -->
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">Disable Camera</span>
+        <input
+          type="checkbox"
+          class="toggle toggle-primary"
+          [checked]="getSettings.isCameraDisabled()"
+          (change)="setCameraDisabled($any($event.target).checked)"
+        />
+      </label>
+    </div>
+
+    <!-- Kiosk Mode Toggle -->
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">Enable Kiosk Mode</span>
+        <input
+          type="checkbox"
+          class="toggle toggle-primary"
+          [checked]="getSettings.isKioskMode()"
+          (change)="setKioskMode($any($event.target).checked)"
+        />
+      </label>
+    </div>
+
+    <!-- Forbid Camera Switch Toggle -->
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">Forbid Camera Switch</span>
+        <input
+          type="checkbox"
+          class="toggle toggle-primary"
+          [checked]="getSettings.isCameraSwitchForbidden()"
+          (change)="setCameraSwitchForbidden($any($event.target).checked)"
+        />
+      </label>
+    </div>
+
+    <!-- Reset Button -->
+    <div class="mt-6">
+      <button class="btn btn-error w-full" (click)="reset()">
+        Reset Settings
+      </button>
+    </div>
+
+    <!-- Back Button -->
+    <div class="mt-6">
+      <a class="btn btn-primary w-full" routerLink="/scan">
+        Back
+      </a>
+  </div>
+</div>

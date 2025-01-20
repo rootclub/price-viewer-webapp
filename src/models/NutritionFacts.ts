@@ -1,0 +1,33 @@
+export interface NutritionFacts {
+  weightVolume?: number;
+  weightVolumeUnit?: string;
+  energy?: number;
+  totalFat?: number;
+  saturatedFat?: number;
+  transFat?: number;
+  polyunsaturatedFat?: number;
+  monounsaturatedFat?: number;
+  cholesterol?: number;
+  sodium?: number;
+  totalCarbs?: number;
+  dietaryFiber?: number;
+  solubleFiber?: number;
+  totalSugars?: number;
+  addedSugars?: number;
+  vitaminD?: number;
+  calcium?: number;
+  iron?: number;
+  potassium?: number;
+  vitaminA?: number;
+  vitaminC?: number;
+  thiamin?: number;
+  riboflavin?: number;
+  niacin?: number;
+  vitaminB6?: number;
+  folate?: number;
+  vitaminB12?: number;
+  phosphorus?: number;
+  magnesium?: number;
+  zinc?: number;
+  ethanol?: number;
+}

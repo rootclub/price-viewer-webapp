@@ -1,0 +1,9 @@
+@if (present.length > 0) {
+  <p>Presenta: {{getAllergenPresent().join(', ')}}.</p>
+}
+@if (allergens.otherAllergens) {
+  <p>Altri allergeni: {{allergens.otherAllergens}}.</p>
+}
+@if (traces.length > 0) {
+  <p>Tracce di: {{getAllergenTraces().join(', ')}}.</p>
+}

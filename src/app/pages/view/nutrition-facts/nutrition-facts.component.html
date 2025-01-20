@@ -1,0 +1,31 @@
+@if (nutritionFacts.energy) {
+  <p>Energia: {{normalizeToWeight(nutritionFacts.energy)}}kcal.</p>
+}
+@if (nutritionFacts.weightVolume) {
+  <p>Quantità: {{nutritionFacts.weightVolume}}{{nutritionFacts.weightVolumeUnit}}.</p>
+}
+@if ((getComponents() | keyvalue).length > 0) {
+  <div class="overflow-x-auto">
+    <table class="table">
+      <!-- head -->
+      <thead>
+      <tr>
+        <th>Elemento</th>
+        <th class="float-right">Quantità</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let component of getComponents() | keyvalue">
+          <td>{{NutritionValuesDictionary[component.key].name}}</td>
+          <td class="float-right">{{normalizeToWeight(component.value)}}{{NutritionValuesDictionary[component.key].unit}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+}
+@if (!isWeightNormalized()) {
+    <p><i>Valori nutrizionali espressi per 100g.</i></p>
+}
+@if (nutritionFacts.ethanol && nutritionFacts.ethanol > 0) {
+  <p>Contenuto <b>alcolico</b>: {{nutritionFacts.ethanol+''}}%.</p>
+}

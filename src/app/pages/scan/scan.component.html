@@ -1,0 +1,42 @@
+<div class="flex flex-col w-full p-4 min-h-full">
+  <div class="flex flex-col w-full space-y-4">
+    @if (errorMessage) {
+      <div role="alert" class="alert alert-error">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 shrink-0 stroke-current"
+          fill="none"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="text-xl">{{ errorMessage }}</span>
+      </div>
+    }
+    @if (!getSettings.isCameraDisabled()) {
+    <div class="card flex justify-center items-center w-full">
+      <zxing-scanner
+        [formats]="[BarcodeFormat.EAN_13, BarcodeFormat.EAN_8]"
+        (scanSuccess)="onValueChanges($event)"
+        (camerasFound)="onCamerasFound($event)"
+        [device]="selectedDevice"
+      ></zxing-scanner>
+    </div>
+    @if (cameras && cameras.length > 1 && getSettings.isCameraSwitchForbidden()) {
+      <a class="btn" (click)="changeCamera()">Cambia fotocamera</a>
+    }
+    }
+  </div>
+  <div class="w-full items-center pt-4 flex-col mt-auto space-y-2">
+    <label class="items-center input flex input-bordered text-base-content gap-2 input-primary">
+      <input placeholder="CODE" type="text" class="grow" #BARCODE [formControl]="barcode" (keydown)="onKeydown($event)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23 19.586l-2.832-2.832c.524-.79.832-1.735.832-2.754 0-2.761-2.239-5-5-5s-5 2.239-5 5 2.239 5 5 5c1.019 0 1.964-.308 2.754-.832l2.832 2.832 1.414-1.414zm-7-2.586c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3-1.346 3-3 3zm7-2v-12h1v12h-1zm-4-7.315v-4.685h2v6.11c-.574-.586-1.251-1.068-2-1.425zm-10-4.685v12h-1v-12h1zm-5 0h2v12h-2v-12zm-4 0h2v12h-2v-12zm17 4.08c-.328-.047-.66-.08-1-.08v-4h1v4.08zm-6 2.03v-6.11h3v4.295c-1.152.344-2.18.977-3 1.815z"/></svg>
+    </label>
+    <a class="w-full font-bold btn btn-primary bg-primary glass" [ngClass]="{'no-animation btn-disabled': !barcode.valid }" (click)="this.submit()">
+      INVIA
+    </a>
+  </div>
+</div>

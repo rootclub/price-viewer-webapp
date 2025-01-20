@@ -1,0 +1,16 @@
+export const AllergensValuesDictionary: { [key: string]: string } = {
+  gluten: 'Glutine',
+  crustaceans: 'Crostacei',
+  eggs: 'Uova',
+  fish: 'Pesce',
+  peanuts: 'Arachidi',
+  soy: 'Soia',
+  milk: 'Latte',
+  nuts: 'Frutta a guscio',
+  celery: 'Sedano',
+  sesame: 'Sesamo',
+  sulfurDioxide: 'Anidride solforosa',
+  lupin: 'Lupini',
+  mustard: 'Senape',
+  mollusks: 'Molluschi',
+};

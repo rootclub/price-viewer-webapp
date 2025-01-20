@@ -1,0 +1,46 @@
+<div class="min-h-screen flex flex-col justify-center items-center bg-base-200 p-4">
+  <!-- Price Display -->
+  <div class="card bg-base-100 shadow-lg p-6 mb-8 w-full max-w-md">
+    <p class="font-mono font-light">{{ barcode }}</p>
+    <p class="text-2xl font-bold text-base-content">Il prezzo è <span class="text-primary">{{ formatCurrency(price, 'it-IT', '€') }}</span></p>
+  </div>
+
+  @if (allergens || nutritionFacts) {
+    <div class="card bg-base-100 shadow-lg p-6 mb-8 w-full max-w-md">
+      <div class="join join-vertical w-full">
+        @if (allergens) {
+          <div class="collapse collapse-arrow join-item border-base-300 border">
+            <input type="radio" name="allergens-nutritionFacts" checked="checked" id="allergens-radio" />
+            <label for="allergens-radio" class="collapse-title text-xl font-medium cursor-pointer">Allergeni</label>
+            <div class="collapse-content">
+              <app-allergenes [allergens]="allergens"></app-allergenes>
+            </div>
+          </div>
+        }
+        @if (nutritionFacts) {
+          <div class="collapse collapse-arrow join-item border-base-300 border">
+            @if (allergens) {
+              <input type="radio" name="allergens-nutritionFacts" id="nutritionFacts-radio" />
+            } @else {
+              <input type="radio" name="allergens-nutritionFacts" checked="checked" id="nutritionFacts-radio" />
+            }
+            <label for="nutritionFacts-radio" class="collapse-title text-xl font-medium cursor-pointer">Tabella nutritiva</label>
+            <div class="collapse-content">
+              <app-nutrition-facts [nutritionFacts]="nutritionFacts"></app-nutrition-facts>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Back Button -->
+  @if (this.queryParams.embed != 'true') {
+    <a routerLink="/scan" class="btn btn-primary btn-lg w-full max-w-md gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      <span>Torna indietro</span>
+    </a>
+  }
+</div>
